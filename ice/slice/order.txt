@@ -1,0 +1,9 @@
+slice2java --output-dir ../generated  HelloWorld.ice
+
+
+启动注册中心
+icegridregistry --Ice.Config=D:\repository\ice-demo\src\main\resources\registry.cfg
+
+
+启动server（最好用IDE启动）
+java IceBox.Server --Ice.Config=config.properties
