@@ -36,7 +36,7 @@ public class DemoServiceImpl extends _DemoServiceDisp implements Service {
 
     @Override
     public void stop() {
-        System.out.println(this._adapter.getName() + "is stoped!");
+        System.out.println(this._adapter.getName() + "is stop!");
         // 销毁adapter
         _adapter.destroy();
     }

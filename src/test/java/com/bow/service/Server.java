@@ -13,7 +13,7 @@ public class Server {
             // args为初使化参数，如连接超时时间，初使化客户连接池的数量等
             ic = Ice.Util.initialize(args);
 
-            // 创建一个对象适配器
+            // 对象适配器，负责把请求传给正确的Servant
             Ice.ObjectAdapter adapter = ic.createObjectAdapterWithEndpoints("DemoServiceAdapter", "default -p 10000");
 
             // 为DemoService接口创建一个servant, 给其指定名字后加入到adapter

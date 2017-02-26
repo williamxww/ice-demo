@@ -12,6 +12,7 @@ public class Client {
 
     public static void main(String[] args) {
         int status = 0;
+        //通信器
         Ice.Communicator ic = null;
         try {
             String[] initParams = new String[]{"--Ice.Default.Locator=IceGrid/Locator:tcp -h localhost -p 4061"};
