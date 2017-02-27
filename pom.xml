@@ -13,9 +13,23 @@
         <java_source_version>1.8</java_source_version>
         <java_target_version>1.8</java_target_version>
         <file_encoding>UTF-8</file_encoding>
+        <ice_version>3.6.3</ice_version>
         <slice.home>D:\CFile\ZeroC\Ice-3.6.3</slice.home>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>zeroc</id>
+            <name>zeroc</name>
+            <url>http://repo.zeroc.com/nexus/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -43,12 +57,22 @@
         <dependency>
             <groupId>com.zeroc</groupId>
             <artifactId>ice</artifactId>
-            <version>3.6.3</version>
+            <version>${ice_version}</version>
         </dependency>
         <dependency>
             <groupId>com.zeroc</groupId>
             <artifactId>icebox</artifactId>
-            <version>3.6.3</version>
+            <version>${ice_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>icegrid</artifactId>
+            <version>${ice_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zeroc</groupId>
+            <artifactId>glacier2</artifactId>
+            <version>${ice_version}</version>
         </dependency>
 
 
@@ -56,6 +80,53 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="slice2java">
+                                <taskdef name="slice2java" classname="Slice2JavaTask"
+                                         classpathref="maven.plugin.classpath" />
+                                <slice2java outputdir="ice/generated">
+                                    <fileset dir="ice/slice" includes="*.ice" />
+                                </slice2java>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.zeroc</groupId>
+                        <artifactId>ant-ice</artifactId>
+                        <version>4.0.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>generated</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
