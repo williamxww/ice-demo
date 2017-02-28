@@ -1,5 +1,6 @@
 package com.bow.unit;
 
+import Ice.ByteSeqHolder;
 import Ice.Communicator;
 import Ice.InitializationData;
 import Ice.OutputStream;
@@ -20,5 +21,9 @@ public class OutputStreamTest {
         Communicator communicator = Util.initialize(initData);
         OutputStream os = new OutputStreamI(communicator);
 
+    }
+
+    public void byteSeqHold(){
+        ByteSeqHolder holder = new ByteSeqHolder();
     }
 }
