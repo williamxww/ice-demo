@@ -42,7 +42,7 @@ public class Client {
     }
 
     @Test
-    public void test1() {
+    public void call() {
         servicePrx.say("vv");
         int a = servicePrx.calculate(1, 1);
         System.out.println(a);
