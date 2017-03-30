@@ -5,9 +5,10 @@ public class Server {
         try {
             Ice.Communicator communicator = Ice.Util.initialize(args);
             Ice.ObjectAdapter adapter = communicator.createObjectAdapterWithEndpoints("Hello",
-                    "tcp -h 192.168.1.104 -p 10000");
+                    "tcp  -p 10000");
             adapter.add(new HelloI(), communicator.stringToIdentity("hello"));
             adapter.activate();
+            System.out.println("Started");
             communicator.waitForShutdown();
             communicator.destroy();
         } catch (Ice.LocalException ex) {

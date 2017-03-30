@@ -28,10 +28,9 @@ public class Client {
             communicator = Ice.Util.initialize(initParams);
 
             // 通过servant信息(servant名称:地址)获取代理
-            Ice.ObjectPrx proxy = communicator.stringToProxy("DemoService:default -p 10000");
+//            Ice.ObjectPrx proxy = communicator.stringToProxy("DemoService:default -p 10000");
             // 通过注册中心获取地址信息
-            // Ice.ObjectPrx proxy =
-            // ic.stringToProxy("DemoService@DemoServiceAdapter");
+             Ice.ObjectPrx proxy = communicator.stringToProxy("DemoService@DemoServiceAdapter");
 
             // 获取远端接口的代理
             servicePrx = DemoServicePrxHelper.checkedCast(proxy);

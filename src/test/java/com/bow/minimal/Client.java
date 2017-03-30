@@ -9,7 +9,7 @@ public class Client {
         try {
             Ice.Communicator communicator = Ice.Util.initialize(args);
             HelloPrx hello = HelloPrxHelper
-                    .checkedCast(communicator.stringToProxy("hello:tcp -h 192.168.1.104 -p 10000"));
+                    .checkedCast(communicator.stringToProxy("hello:tcp  -p 10000"));
             int c = 0;
             while (c < 3) {
                 hello.sayHello();
