@@ -129,7 +129,8 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>generated</source>
+                                <source>ice/generated</source>
+                                <source>src/main/java</source>
                             </sources>
                         </configuration>
                     </execution>
